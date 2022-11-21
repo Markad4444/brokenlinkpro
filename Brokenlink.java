@@ -21,10 +21,10 @@ public class Brokenlink {
 
 		WebDriverManager.chromedriver().setup();
 		WebDriver driver = new ChromeDriver();
-		driver.get("https://www.amazon.in/");
+		driver.get("https://www.facebook.com");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		WebElement accountbtn=driver.findElement(By.xpath("//span[@class='nav-line-2 ']"));
+	/*	WebElement accountbtn=driver.findElement(By.xpath("//span[@class='nav-line-2 ']"));
 
 		Actions act= new Actions(driver);
 		act.moveToElement(accountbtn).build().perform();
@@ -34,7 +34,7 @@ public class Brokenlink {
 		driver.findElement(By.id("ap_email")).sendKeys("9049221706");
 		driver.findElement(By.id("continue")).click();
 		driver.findElement(By.id("ap_password")).sendKeys("Flipkart@123");
-		driver.findElement(By.id("signInSubmit")).click();
+		driver.findElement(By.id("signInSubmit")).click();*/
 		List<WebElement> list= driver.findElements(By.tagName("a"));
 		int totallink=list.size();
 		System.out.println(totallink);
@@ -46,8 +46,11 @@ public class Brokenlink {
 			 String hreflink=eachlink.getAttribute("href");
 			 Thread.sleep(2000);
 			 //System.out.println(hreflink);
-			 if(hreflink!=null)
+			 if(hreflink==null || hreflink.isEmpty())
 			 {
+				 System.out.println("href is empty");
+				 continue;
+			 }
 			 URL url = null;
 			try {
 				url = new URL(hreflink);
@@ -91,7 +94,7 @@ public class Brokenlink {
 				 validlink ++;
 			 }
 			 }
-			 }
+			 
 		System.out.println("total brolen link "+brokenlink );
 		System.out.println("total brolen link "+validlink );
 
